@@ -1,0 +1,105 @@
+---------------Monster
+Mango Loco
+Ultra White
+Original Green
+Ultra Red
+Ultra Blue
+Ultra Violet
+Ultra Citron
+Ultra Sunrise
+Ultra Black
+Ultra Paradise
+Ultra Fiesta
+Ultra Rosa
+Juiced Ripper
+Juice Khaos
+Juice Pacific Punch
+Lewis Hamilton
+The Doctor
+Gronk
+Nitrous Super Dry
+Nitrous Killer B
+Nitrous Anti-Gravity
+Nitrous Black Ice
+Mixxd Punch
+Baller's Blend
+Mad Dog
+Pipeline Punch
+Rehab Lemonade
+Rehab Orangeade
+Rehab Peach
+Rehab Pink Lemonade
+Rehab Rojo Tea
+Rehab Green Tea
+Rehab Protean
+---------------Red Bull
+Original
+Sugarfree
+Total Zero
+Red Edition (Cranberry)
+Blue Edition (Blueberry)
+Yellow Edition (Tropical Fruits)
+Orange Edition (Orange)
+Green Edition (Dragon Fruit)
+Pink Edition (Wild Berry)
+Purple Edition (Acai)
+Summer Edition (White Peach) :contentReference[oaicite:0]{index=0}
+Winter Edition (Fuji Apple & Ginger) :contentReference[oaicite:1]{index=1}
+Spring Edition (Grapefruit & Blossom) :contentReference[oaicite:2]{index=2}
+Amber Edition (Plum)
+Sea Blue Edition (Blueberry)
+---------------Rockstar
+Original
+Punched (Fruit Punch)
+Punched (Pineapple)
+Boom (Whipped Strawberry)
+Boom (Piña Colada)
+Pure Zero (Watermelon Kiwi)
+Pure Zero (Grape)
+Pure Zero (Mandarin Orange)
+Pure Zero (Strawberry Peach)
+Pure Zero (Silver Ice)
+Recovery (Orangeade)
+Recovery (Raspberry Lemonade)
+Recovery (Berryade)
+Recovery (Berry Sangria)
+Focus (White Peach)
+Focus (Watermelon Kiwi)
+Focus (Honeydew Melon)
+Focus (Mixed Berry)
+Focus (Passionfruit Mango)
+Focus (Orange Pineapple)
+Focus (Lime)
+Focus (Variety Pack)
+---------------V Energy
+Original
+Blue
+Grape Burst
+Raspberry Lemonade
+Black
+Zero Sugar Blue
+Zero Sugar Original
+Refresh Blackcurrant & Yuzu
+Refresh Green Apple Lemonade
+Gnarly
+Summer Jam
+Sugarfree
+Zero
+Deadpool 2
+Mr Bootleg’s Sour Tonic
+Pure
+Bling
+Tortured Orchard Raspberry Lemonade
+Twisted Tropics Pineapple Crush
+Tropical Sugarfree
+Spiked Punch
+Candy Series
+---------------Mother
+Original
+Passion
+Lava Guava
+Frosty Berry
+Rainbow Sherbet
+Zero Sugar
+Zero Sugar Razzle Berry
+Orange Dreamsicle
