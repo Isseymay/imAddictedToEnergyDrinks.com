@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>dashboard</title>
+    </head>
+    <body>
+        <h1>dashboard</h1>
+        <form action='/dashboard' method='post' onsubmit="addTimestamp()">
+            <label for='brand'>brand</label>
+            <select name='brand' id='brand' required onchange='updateFlavours()'>
+                <option value=''>choose</option>
+                {% for brand in drink_options.keys() %}
+                    <option value='{{ brand }}'>{{ brand }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for='flavour'>flavour</label>
+            <select name='flavour' id='flavour' required>
+                <option value=''>choose</option>
+            </select>
+            <br>
+            <button type='submit'>add drink</button>
+        </form>
+        <br>
+        <h2>your log</h2>
+        <ul>
+            {% for drink in drinks %}
+                <li>{{ drink.drink }} at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
+            {% endfor %}
+        </ul>
+
+        <script>
+            const drinkOptions = {{ drink_options|tojson }};
+        </script>
+        <script src='{{ url_for('static', filename='main.js') }}'></script>
+    </body>
+</html>
