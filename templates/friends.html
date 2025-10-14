@@ -1,0 +1,21 @@
+<h1>your friends</h1>
+
+<h2>pending requests</h2>
+<ul>
+    {% for req in pending %}
+        <li>
+            {{ req.sender.username }} 
+            <a href="{{ url_for('accept_request', req_id=req.id) }}">accept</a> | 
+            <a href="{{ url_for('decline_request', req_id=req.id) }}">decline</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>friends</h2>
+<ul>
+    {% for friend in friends %}
+        <li><a href="{{ url_for('user_profile', user_id=friend.id) }}">{{ friend.username }}</a></li>
+    {% endfor %}
+</ul>
+
+<a href="/dashboard">dashboard</a>

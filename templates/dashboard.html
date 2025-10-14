@@ -3,9 +3,21 @@
         <title>dashboard</title>
     </head>
     <body>
-        <h1>dashboard</h1>
+        <h1>welcome {{ current_user.username }}</h1>
+
+        <h2>navigation</h2>
+        <ul>
+            <li><a href="{{ url_for('account') }}">account</a></li>
+            <li><a href="{{ url_for('friends') }}">friends</a></li>
+            <li><a href="{{ url_for('search') }}">search</a></li>
+            <li><a href="{{ url_for('logout') }}">logout</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>log an energy drink</h2>
         <form action='/dashboard' method='post' onsubmit="addTimestamp()">
-            <label for='brand'>brand</label>
+            <label for='brand'>brand:</label>
             <select name='brand' id='brand' required onchange='updateFlavours()'>
                 <option value=''>choose</option>
                 {% for brand in drink_options.keys() %}
@@ -13,20 +25,36 @@
                 {% endfor %}
             </select>
             <br>
-            <label for='flavour'>flavour</label>
+            <label for='flavour'>flavour:</label>
             <select name='flavour' id='flavour' required>
                 <option value=''>choose</option>
             </select>
             <br>
             <button type='submit'>add drink</button>
         </form>
-        <br>
-        <h2>your log</h2>
-        <ul>
-            {% for drink in drinks %}
-                <li>{{ drink.drink }} at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
-            {% endfor %}
-        </ul>
+        <hr>
+        <h2>Your Recent Drinks</h2>
+        {% if drinks %}
+            <ul>
+                {% for drink in drinks %}
+                    <li>{{ drink.drink }} at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>you havent logged any drinks yet</p>
+        {% endif %}
+        <hr>
+        <h2>your friends</h2>
+        {% set friends_list = current_user.friends() %}
+        {% if friends_list %}
+            <ul>
+                {% for friend in friends_list %}
+                    <li><a href="{{ url_for('user_profile', user_id=friend.id) }}">{{ friend.username }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>you dont have any friends yet</p>
+        {% endif %}
 
         <script>
             const drinkOptions = {{ drink_options|tojson }};

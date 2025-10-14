@@ -1,0 +1,22 @@
+<h1>{{ user.username }}'s profile</h1>
+
+{% if request_status %}
+    {% if request_status.status == 'pending' %}
+        <p>friend request pending :/</p>
+    {% elif request_status.status == 'accepted' %}
+        <p>you are friends :D</p>
+    {% elif request_status.status == 'declined' %}
+        <p>friend request declined :C</p>
+    {% endif %}
+{% else %}
+    <a href="{{ url_for('send_request', user_id=user.id) }}">send friend request</a>
+{% endif %}
+
+<h3>recent drinks:</h3>
+<ul>
+    {% for drink in drinks %}
+        <li>{{ drink.drink }} at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
+    {% endfor %}
+</ul>
+
+<a href="/dashboard">dashboard</a>

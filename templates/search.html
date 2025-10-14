@@ -1,0 +1,18 @@
+<h1>search users</h1>
+<form method="post">
+    <input type="text" name="username" placeholder="search username">
+    <button type="submit">search</button>
+</form>
+
+{% if results %}
+<ul>
+    {% for user in results %}
+        <li>
+            <a href="{{ url_for('user_profile', user_id=user.id) }}">{{ user.username }}</a>
+            <a href="{{ url_for('send_request', user_id=user.id) }}">[send friend request]</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="/dashboard">dashboard</a>
