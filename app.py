@@ -113,10 +113,11 @@ def account():
 @login_required
 def search():
     results = []
+    friends_list = current_user.friends()
     if request.method == 'POST':
         query = request.form.get('username', '')
         results = User.query.filter(User.username.contains(query), User.id != current_user.id).all()
-    return render_template('search.html', results=results)
+    return render_template('search.html', results=results, friends_list=friends_list)
 
 @app.route('/user/<int:user_id>')
 @login_required
