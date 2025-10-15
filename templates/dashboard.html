@@ -5,6 +5,8 @@
     <body>
         <h1>welcome {{ current_user.username }}</h1>
 
+        <p>coins: {{ current_user.coins }}</p>
+
         <h2>navigation</h2>
         <ul>
             <li><a href="{{ url_for('account') }}">account</a></li>
@@ -30,14 +32,21 @@
                 <option value=''>choose</option>
             </select>
             <br>
+            <label for='size'>size:</label>
+            <input type="number" min="0" max="500" name="size" id="size" placeholder="ml" required style="width: 50px;">
+            <span>ml</span>
+            <br>
+            <label for='code'>code:</label>
+            <input type="number" name="code" id="code" placeholder="code" required>
+            <br>
             <button type='submit'>add drink</button>
         </form>
         <hr>
-        <h2>Your Recent Drinks</h2>
+        <h2>your recent drinks</h2>
         {% if drinks %}
             <ul>
                 {% for drink in drinks %}
-                    <li>{{ drink.drink }} at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
+                    <li>{{ drink.drink }} {{drink.size}}ml at {{ drink.timestamp.strftime('%H:%M:%S %d-%m-%Y') }}</li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -53,7 +62,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>you dont have any friends yet</p>
+            <p>you dont have any friends yet :C</p>
         {% endif %}
 
         <script>
