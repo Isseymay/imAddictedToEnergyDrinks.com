@@ -29,6 +29,9 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(120), nullable=False)
+    coins = db.Column(db.Integer, default=0)
+    #avatar = db.Column(db.String(200), default='default_avatar.png')??? TO DO ADD AVATAR SELECTION N STUFF
+
     drinks = db.relationship('Log', backref='user', lazy=True)
     sent_requests = db.relationship('FriendRequest', foreign_keys='FriendRequest.sender_id', backref='sender', lazy='dynamic')
     received_requests = db.relationship('FriendRequest', foreign_keys='FriendRequest.receiver_id', backref='receiver', lazy='dynamic')
@@ -48,6 +51,8 @@ class User(UserMixin, db.Model):
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drink = db.Column(db.String(100), nullable=False)
+    size = db.Column(db.Integer, nullable=False)
+    code = db.Column(db.Integer, nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=lambda: datetime.now(LOCAL_TZ))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -79,9 +84,12 @@ def dashboard():
     if request.method == 'POST':
         brand = request.form.get('brand')
         flavour = request.form.get('flavour')
+        size = request.form.get('size')
+        code = request.form.get('code')
         if brand and flavour:
-            new_drink = Log(drink=f'{brand} {flavour}', user_id=current_user.id)
+            new_drink = Log(drink=f'{brand} {flavour}', size=int(size), code=int(code), user_id=current_user.id)
             db.session.add(new_drink)
+            current_user.coins += 10
             db.session.commit()
             flash('Energy drink logged successfully!', 'success')
         else:
@@ -143,6 +151,7 @@ def send_request(user_id):
             req = FriendRequest(sender_id=current_user.id, receiver_id=user_id)
             db.session.add(req)
             db.session.commit()
+            current_user.coins += 5
             flash('Friend request sent!', 'success')
     return redirect(url_for('search'))
 
@@ -160,6 +169,7 @@ def accept_request(req_id):
     if req.receiver_id == current_user.id:
         req.status = 'accepted'
         db.session.commit()
+        current_user.coins += 20
         flash('Friend request accepted!', 'success')
     return redirect(url_for('friends'))
 
@@ -186,6 +196,7 @@ def login():
         if user and user.check_password(password):
             login_user(user)
             next_page = request.args.get('next')
+            current_user.coins += 1
             return redirect(next_page or url_for('dashboard'))
         else:
             flash('Invalid username or password.', 'error')
@@ -225,4 +236,4 @@ def logout():
 
 if __name__ == '__main__':
     with app.app_context(): db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
