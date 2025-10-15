@@ -84,12 +84,12 @@ def dashboard():
     if request.method == 'POST':
         brand = request.form.get('brand')
         flavour = request.form.get('flavour')
-        size = request.form.get('size')
-        code = request.form.get('code')
+        size = int(request.form.get('size'))
+        code = int(request.form.get('code'))
         if brand and flavour:
-            new_drink = Log(drink=f'{brand} {flavour}', size=int(size), code=int(code), user_id=current_user.id)
+            new_drink = Log(drink=f'{brand} {flavour}', size=size, code=code, user_id=current_user.id)
             db.session.add(new_drink)
-            current_user.coins += 10
+            current_user.coins += size/10
             db.session.commit()
             flash('Energy drink logged successfully!', 'success')
         else:
