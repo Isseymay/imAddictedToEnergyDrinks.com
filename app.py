@@ -41,6 +41,9 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def total_litres(self):
+        return sum(entry.size for entry in self.drinks)
 
     def friends(self):
         sent = FriendRequest.query.filter_by(sender_id=self.id, status='accepted').all()
@@ -232,6 +235,8 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'success')
     return redirect(url_for('login'))
+
+
 
 
 if __name__ == '__main__':
